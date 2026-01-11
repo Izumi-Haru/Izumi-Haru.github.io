@@ -12,6 +12,7 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
     const [isSnsOpen, setIsSnsOpen] = useState(false);
 
     const handleProfileClick = () => {
+        setIsSnsOpen(false);
         setIsProfileOpen(!isProfileOpen);
     };
 
@@ -21,7 +22,16 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
     };
 
     const handleSnsClick = () => {
+        setIsProfileOpen(false);
+        setIsCatsOpen(false);
         setIsSnsOpen(!isSnsOpen);
+    };
+
+    const handleItemSelect = (action?: () => void) => {
+        if (action) action();
+        setIsProfileOpen(false);
+        setIsCatsOpen(false);
+        setIsSnsOpen(false);
     };
 
     return (
@@ -42,7 +52,7 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                             <li>
                                 <button
                                     className={styles.submenuButton}
-                                    onClick={() => onProfileSelect('/owner.png')}
+                                    onClick={() => handleItemSelect(() => onProfileSelect('/owner.png'))}
                                 >
                                     Owner
                                 </button>
@@ -59,7 +69,7 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                                         <li>
                                             <button
                                                 className={styles.submenuButton}
-                                                onClick={() => onProfileSelect('/kyotaro.png')}
+                                                onClick={() => handleItemSelect(() => onProfileSelect('/kyotaro.png'))}
                                             >
                                                 Kyotaro
                                             </button>
@@ -67,7 +77,7 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                                         <li>
                                             <button
                                                 className={styles.submenuButton}
-                                                onClick={() => onProfileSelect('/mei.png')}
+                                                onClick={() => handleItemSelect(() => onProfileSelect('/mei.png'))}
                                             >
                                                 Mei
                                             </button>
@@ -75,7 +85,7 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                                         <li>
                                             <button
                                                 className={styles.submenuButton}
-                                                onClick={() => onProfileSelect('/yukinosuke.png')}
+                                                onClick={() => handleItemSelect(() => onProfileSelect('/yukinosuke.png'))}
                                             >
                                                 Yukinosuke
                                             </button>
@@ -109,10 +119,35 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                         <ul className={styles.submenu}>
                             <li>
                                 <a
+                                    href="https://www.youtube.com/@%E6%B3%89%E6%B0%B4%E6%98%A5-r6f"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.submenuButton}
+                                    onClick={() => handleItemSelect()}
+                                >
+                                    <Image src="/youtube.png" alt="Youtube" width={24} height={24} />
+                                    Youtube (Game)
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.youtube.com/@%E3%81%84%E3%81%9A%E3%81%BF%E5%AE%B6%E3%81%AE%E3%81%AB%E3%82%83%E3%82%93%E3%81%93"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.submenuButton}
+                                    onClick={() => handleItemSelect()}
+                                >
+                                    <Image src="/youtube.png" alt="Youtube" width={24} height={24} />
+                                    Youtube (Cats)
+                                </a>
+                            </li>
+                            <li>
+                                <a
                                     href="https://bsky.app/profile/haruizumi.bsky.social"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.submenuButton}
+                                    onClick={() => handleItemSelect()}
                                 >
                                     <Image src="/bluesky.png" alt="Bluesky" width={24} height={24} />
                                     Bluesky
@@ -124,6 +159,7 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.submenuButton}
+                                    onClick={() => handleItemSelect()}
                                 >
                                     <Image src="/medium.png" alt="Medium" width={24} height={24} />
                                     Medium
@@ -135,6 +171,7 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.submenuButton}
+                                    onClick={() => handleItemSelect()}
                                 >
                                     <Image src="/tumblr.png" alt="Tumblr" width={24} height={24} />
                                     Tumblr

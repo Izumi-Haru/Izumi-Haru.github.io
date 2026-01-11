@@ -56,3 +56,14 @@
   height: 30px;
   display: block;
 }
+
+@media (max-width: 768px) {
+  .overlayImage {
+    max-width: 80vw;
+    max-height: 40vh;
+  }
+
+  .overlayContainer {
+    top: 20px;
+  }
+}
