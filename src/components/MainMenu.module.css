@@ -89,7 +89,16 @@
     color: #ffffff;
 }
 
+/* Desktop Only helper */
+.desktopOnly {
+    display: block;
+}
+
 @media (max-width: 768px) {
+    .desktopOnly {
+        display: none;
+    }
+
     .menuContainer {
         width: 100%;
         height: auto;
@@ -102,7 +111,6 @@
         flex-direction: column;
         align-items: center;
         position: relative;
-        /* Base for absolute submenus */
     }
 
     .menuTitle {
@@ -136,53 +144,58 @@
         text-align: center;
     }
 
+    /* Submenu styling for when it's rendered outside MainMenu */
+    .mobileSubmenuContainer {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+
     .submenu {
-        position: absolute;
-        top: 100%;
-        /* Below the menu bar */
-        left: 0;
-        width: 250px;
-        height: 100vh;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        list-style: none;
         margin: 0;
         padding: 1.5rem;
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.7);
+        /* White transparency */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 15px;
+        width: 100%;
+        max-width: 400px;
         display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        z-index: 1000;
-        align-items: flex-start;
-        text-align: left;
-        border-left: none;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        z-index: 10;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .submenu .submenu {
+        margin-top: 1rem;
+        padding: 0;
+        background: none;
+        backdrop-filter: none;
+        border: none;
+        width: 100%;
+        justify-content: center;
+        gap: 1.5rem;
     }
 
     .submenuButton {
         color: #2A447A;
-        /* Dark blue for readability */
         font-weight: 500;
         font-size: 1.1rem;
         padding: 0.5rem 0;
-        width: 100%;
-        justify-content: flex-start;
+        width: auto;
+        border: none;
+        background: none;
+        font-family: inherit;
+        /* Ensure font matches */
     }
 
     .submenuButton:hover {
         color: #000000;
-    }
-
-    /* Nested submenu (Cats) */
-    .submenu .submenu {
-        position: static;
-        width: 100%;
-        height: auto;
-        background: none;
-        backdrop-filter: none;
-        padding: 0 0 0 1.5rem;
-        border-right: none;
-        margin-top: 0.5rem;
-        gap: 0.5rem;
-        z-index: auto;
     }
 }

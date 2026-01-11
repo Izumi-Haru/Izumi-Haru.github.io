@@ -3,17 +3,26 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import SubMenuContent from './SubMenuContent';
 import styles from './MainMenu.module.css';
 
-const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = ({ onProfileSelect }) => {
-    // Independent toggle states for expandable menus
-    const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const [isCatsOpen, setIsCatsOpen] = useState(false);
-    const [isSnsOpen, setIsSnsOpen] = useState(false);
+interface MainMenuProps {
+    onProfileSelect: (path: string | null) => void;
+    activeMenu: 'profile' | 'sns' | null;
+    setActiveMenu: (menu: 'profile' | 'sns' | null) => void;
+    isCatsOpen: boolean;
+    setIsCatsOpen: (open: boolean) => void;
+}
 
+const MainMenu: React.FC<MainMenuProps> = ({
+    onProfileSelect,
+    activeMenu,
+    setActiveMenu,
+    isCatsOpen,
+    setIsCatsOpen
+}) => {
     const handleProfileClick = () => {
-        setIsSnsOpen(false);
-        setIsProfileOpen(!isProfileOpen);
+        setActiveMenu(activeMenu === 'profile' ? null : 'profile');
     };
 
     const handleCatsClick = (e: React.MouseEvent) => {
@@ -22,16 +31,14 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
     };
 
     const handleSnsClick = () => {
-        setIsProfileOpen(false);
-        setIsCatsOpen(false);
-        setIsSnsOpen(!isSnsOpen);
+        setActiveMenu(activeMenu === 'sns' ? null : 'sns');
     };
 
     const handleItemSelect = (action?: () => void) => {
         if (action) action();
-        setIsProfileOpen(false);
-        setIsCatsOpen(false);
-        setIsSnsOpen(false);
+        // We don't necessarily close the menu on mobile anymore to allow seeing the result
+        // But for desktop/consistency let's keep it for now or make it conditional
+        // For now, let's just let the page handle it if needed.
     };
 
     return (
@@ -47,54 +54,17 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                         Profile
                     </button>
 
-                    {isProfileOpen && (
-                        <ul className={styles.submenu}>
-                            <li>
-                                <button
-                                    className={styles.submenuButton}
-                                    onClick={() => handleItemSelect(() => onProfileSelect('/owner.png'))}
-                                >
-                                    Owner
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    className={styles.submenuButton}
-                                    onClick={handleCatsClick}
-                                >
-                                    Cats
-                                </button>
-                                {isCatsOpen && (
-                                    <ul className={styles.submenu}>
-                                        <li>
-                                            <button
-                                                className={styles.submenuButton}
-                                                onClick={() => handleItemSelect(() => onProfileSelect('/kyotaro.png'))}
-                                            >
-                                                Kyotaro
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button
-                                                className={styles.submenuButton}
-                                                onClick={() => handleItemSelect(() => onProfileSelect('/mei.png'))}
-                                            >
-                                                Mei
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button
-                                                className={styles.submenuButton}
-                                                onClick={() => handleItemSelect(() => onProfileSelect('/yukinosuke.png'))}
-                                            >
-                                                Yukinosuke
-                                            </button>
-                                        </li>
-                                    </ul>
-                                )}
-                            </li>
-                        </ul>
-                    )}
+                    <div className={styles.desktopOnly}>
+                        {activeMenu === 'profile' && (
+                            <SubMenuContent
+                                type="profile"
+                                isCatsOpen={isCatsOpen}
+                                onCatsToggle={handleCatsClick}
+                                onItemSelect={handleItemSelect}
+                                onProfileSelect={onProfileSelect}
+                            />
+                        )}
+                    </div>
                 </li>
 
                 {/* Game Log Section */}
@@ -115,70 +85,17 @@ const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = (
                         SNS
                     </button>
 
-                    {isSnsOpen && (
-                        <ul className={styles.submenu}>
-                            <li>
-                                <a
-                                    href="https://www.youtube.com/@%E6%B3%89%E6%B0%B4%E6%98%A5-r6f"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.submenuButton}
-                                    onClick={() => handleItemSelect()}
-                                >
-                                    <Image src="/youtube.png" alt="Youtube" width={24} height={24} />
-                                    Youtube (Game)
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.youtube.com/@%E3%81%84%E3%81%9A%E3%81%BF%E5%AE%B6%E3%81%AE%E3%81%AB%E3%82%83%E3%82%93%E3%81%93"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.submenuButton}
-                                    onClick={() => handleItemSelect()}
-                                >
-                                    <Image src="/youtube.png" alt="Youtube" width={24} height={24} />
-                                    Youtube (Cats)
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://bsky.app/profile/haruizumi.bsky.social"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.submenuButton}
-                                    onClick={() => handleItemSelect()}
-                                >
-                                    <Image src="/bluesky.png" alt="Bluesky" width={24} height={24} />
-                                    Bluesky
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://medium.com/@urahimuzi"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.submenuButton}
-                                    onClick={() => handleItemSelect()}
-                                >
-                                    <Image src="/medium.png" alt="Medium" width={24} height={24} />
-                                    Medium
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.tumblr.com/izumiharu-x-meow"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.submenuButton}
-                                    onClick={() => handleItemSelect()}
-                                >
-                                    <Image src="/tumblr.png" alt="Tumblr" width={24} height={24} />
-                                    Tumblr
-                                </a>
-                            </li>
-                        </ul>
-                    )}
+                    <div className={styles.desktopOnly}>
+                        {activeMenu === 'sns' && (
+                            <SubMenuContent
+                                type="sns"
+                                isCatsOpen={isCatsOpen}
+                                onCatsToggle={handleCatsClick}
+                                onItemSelect={handleItemSelect}
+                                onProfileSelect={onProfileSelect}
+                            />
+                        )}
+                    </div>
                 </li>
             </ul>
         </nav>
