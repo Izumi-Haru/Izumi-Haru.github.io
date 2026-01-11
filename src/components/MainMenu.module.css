@@ -1,0 +1,90 @@
+.menuContainer {
+    width: 250px;
+    height: 100vh;
+    position: relative;
+    background: #2A447A;
+    border-left: 10px solid #ffffff;
+    border-right: 10px solid #ffffff;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 50;
+    margin-left: 80px;
+    /* Offset from left edge */
+}
+
+.menuTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: #ffffff;
+}
+
+.menuList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.menuItem {
+    /* Container for item logic */
+}
+
+.menuButton {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.4rem;
+    /* Slightly larger for emphasis */
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menuButton:hover,
+.active {
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+.submenu {
+    list-style: none;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    /* Indented further */
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    padding-left: 1rem;
+}
+
+.submenuButton {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    transition: color 0.2s ease;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.submenuButton:hover,
+.activeSub {
+    color: #ffffff;
+}
