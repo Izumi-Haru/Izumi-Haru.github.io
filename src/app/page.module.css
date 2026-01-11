@@ -1,0 +1,59 @@
+.mainContainer {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.leftColumn {
+  width: auto;
+  min-width: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  position: relative;
+}
+
+
+.rightColumn {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  /* 縦中央 */
+  justify-content: center;
+  /* 横中央 */
+  padding: 24px;
+}
+
+.roomFrame {
+  width: min(1100px, 100%);
+  /* ★ここで大きさ調整（例: 900px/1200pxなど） */
+  height: min(720px, 92vh);
+  /* ★高さも調整 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* はみ出しを隠す */
+  border-radius: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+
+  .leftColumn {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+}

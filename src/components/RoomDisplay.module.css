@@ -1,0 +1,58 @@
+.roomContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.placeholderRoom {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* Maintain aspect ratio or rely on object-fit */
+}
+
+.roomImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* or cover, depending on preference */
+  display: block;
+}
+
+.overlayContainer {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: auto;
+  height: auto;
+  z-index: 10;
+}
+
+.overlayImage {
+  display: block;
+  max-width: 50vw;
+  /* Adjust largely to fit reasonably */
+  max-height: 50vh;
+}
+
+.closeButton {
+  position: absolute;
+  top: -10px;
+  /* Adjust to hang slightly off or on corner */
+  right: -10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 11;
+}
+
+.closeButton img {
+  width: 30px;
+  /* Adjust size of close button */
+  height: 30px;
+  display: block;
+}

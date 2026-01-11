@@ -1,0 +1,48 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 118, 255, 0.23);
+    filter: brightness(1.1);
+}
+
+.secondary {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--foreground);
+}
+
+.secondary:hover {
+    background: var(--secondary);
+    border-color: var(--foreground);
+}
+
+.outline {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+.outline:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
