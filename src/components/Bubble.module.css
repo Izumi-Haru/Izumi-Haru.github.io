@@ -5,7 +5,6 @@
     padding: 1rem 1.5rem;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    font-family: var(--font-sans);
     font-weight: 500;
     max-width: 250px;
     z-index: 10;

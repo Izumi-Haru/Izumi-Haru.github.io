@@ -29,6 +29,7 @@ const SubMenuContent: React.FC<SubMenuContentProps> = ({
                         className={styles.submenuButton}
                         onClick={() => onItemSelect(() => onProfileSelect('/owner.png'))}
                     >
+                        <Image src="/cat.png" alt="icon" width={20} height={20} />
                         Owner
                     </button>
                 </li>
@@ -37,6 +38,7 @@ const SubMenuContent: React.FC<SubMenuContentProps> = ({
                         className={styles.submenuButton}
                         onClick={onCatsToggle}
                     >
+                        <Image src="/cat.png" alt="icon" width={20} height={20} />
                         Cats
                     </button>
                     {isCatsOpen && (
