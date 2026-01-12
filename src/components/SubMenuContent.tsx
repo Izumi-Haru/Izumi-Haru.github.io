@@ -10,6 +10,7 @@ interface SubMenuContentProps {
     onCatsToggle: (e: React.MouseEvent) => void;
     onItemSelect: (action?: () => void) => void;
     onProfileSelect: (path: string | null) => void;
+    isMobile?: boolean;
 }
 
 const SubMenuContent: React.FC<SubMenuContentProps> = ({
@@ -17,8 +18,11 @@ const SubMenuContent: React.FC<SubMenuContentProps> = ({
     isCatsOpen,
     onCatsToggle,
     onItemSelect,
-    onProfileSelect
+    onProfileSelect,
+    isMobile
 }) => {
+    const catIcon = isMobile ? '/cat2.png' : '/cat.png';
+
     if (!type) return null;
 
     if (type === 'profile') {
@@ -29,7 +33,7 @@ const SubMenuContent: React.FC<SubMenuContentProps> = ({
                         className={styles.submenuButton}
                         onClick={() => onItemSelect(() => onProfileSelect('/owner.png'))}
                     >
-                        <Image src="/cat.png" alt="icon" width={20} height={20} />
+                        <Image src={catIcon} alt="icon" width={20} height={20} />
                         Owner
                     </button>
                 </li>
@@ -38,7 +42,7 @@ const SubMenuContent: React.FC<SubMenuContentProps> = ({
                         className={styles.submenuButton}
                         onClick={onCatsToggle}
                     >
-                        <Image src="/cat.png" alt="icon" width={20} height={20} />
+                        <Image src={catIcon} alt="icon" width={20} height={20} />
                         Cats
                     </button>
                     {isCatsOpen && (

@@ -55,6 +55,7 @@ export default function Home() {
                 onCatsToggle={handleCatsToggle}
                 onItemSelect={handleItemSelect}
                 onProfileSelect={handleProfileSelect}
+                isMobile={true}
               />
             </div>
           )}
