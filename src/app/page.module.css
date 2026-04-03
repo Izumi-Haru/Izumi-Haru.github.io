@@ -331,3 +331,18 @@
     height: 80px;
   }
 }
+
+/* スマホ用（画面幅768px以下） */
+@media (max-width: 768px) {
+  .iconList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2列 */
+    gap: 16px; /* アイコン間の余白 */
+    justify-items: center;
+  }
+
+  .profileIcon {
+    width: 80px; 
+    height: 80px;
+  }
+}
