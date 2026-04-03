@@ -221,9 +221,9 @@ export default function Home() {
             </a>
             
             <a href="https://infinitebacklog.net/users/izumiharu" target="_blank" rel="noopener noreferrer" className={styles.snsButton}>
-              <Image src="/infinity.png" alt="INFINITE BACKLOG" width={32} height={32} />
+              <Image src="/infinity.png" alt="INFINITEBACKLOG" width={32} height={32} />
               <div className={styles.snsText}>
-                <span className={styles.snsLabel}>INFINITEBACKLOG</span>
+                <span className={styles.snsLabel}>INFINITE<br />　BACKLOG</span>
               </div>
               <svg
                 className={styles.snsArrow}
