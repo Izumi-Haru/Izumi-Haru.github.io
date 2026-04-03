@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Darumadrop_One } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const darumadrop = Darumadrop_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-daruma"
+});
 
 export const metadata: Metadata = {
-  title: "Personal Website",
+  title: "泉水家のページ",
   description: "My personal portfolio and website",
 };
 
@@ -16,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.variable}>
+      <body className={darumadrop.variable}>
         {children}
       </body>
     </html>

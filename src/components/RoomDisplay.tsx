@@ -13,7 +13,7 @@ const RoomDisplay: React.FC<RoomDisplayProps> = ({ overlayImage, onClose }) => {
 		<div className={styles.roomContainer}>
 			<div className={styles.placeholderRoom}>
 				<img
-					src="/room.png"
+					src="/ownerwithcat.png"
 					alt="room"
 					className={styles.roomImage}
 				/>

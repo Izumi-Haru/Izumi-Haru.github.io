@@ -1,90 +1,188 @@
-.menuContainer {
-    width: 250px;
-    height: 100vh;
-    position: relative;
-    background: #2A447A;
-    border-left: 10px solid #ffffff;
-    border-right: 10px solid #ffffff;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    z-index: 50;
-    margin-left: 80px;
-    /* Offset from left edge */
+.menuWrapper {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
 }
 
-.menuTitle {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: #ffffff;
+/* 背景オーバーレイ */
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 90; /* メニューより下に配置 */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(2px); /* 軽くぼかすとお洒落 */
 }
 
-.menuList {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.menuOverlay.overlayVisible {
+  opacity: 1;
+  visibility: visible;
 }
 
-.menuItem {
-    /* Container for item logic */
+/* トグルボタン（カプセル状） */
+.toggleButton {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  pointer-events: auto;
 }
 
-.menuButton {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.4rem;
-    /* Slightly larger for emphasis */
-    cursor: pointer;
-    text-align: left;
-    padding: 0;
-    transition: all 0.2s ease;
-    font-family: inherit;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.toggleButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.menuButton:hover,
-.active {
-    color: #ffffff;
-    transform: translateX(5px);
+.toggleText {
+  color: #3E4F80;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  font-family: Arial, sans-serif;
 }
 
-.submenu {
-    list-style: none;
-    margin-top: 1rem;
-    margin-left: 2rem;
-    /* Indented further */
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    padding-left: 1rem;
+.toggleIcon {
+  display: block;
 }
 
-.submenuButton {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: left;
-    padding: 0;
-    transition: color 0.2s ease;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* ドロップダウンパネル */
+.dropdownPanel {
+  margin-top: 16px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  width: 250px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  /* アニメーション用 */
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+  pointer-events: none;
 }
 
-.submenuButton:hover,
-.activeSub {
-    color: #ffffff;
+.dropdownPanel.open {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* logoTitle remains for spacing */
+.logoTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.logoText {
+  color: #3E4F80;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: -0.05em;
+  font-family: Arial, sans-serif;
+}
+
+.mainList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemButton {
+  background: none;
+  border: none;
+  color: #3E4F80;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  padding: 10px 16px;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.itemButton:hover {
+  background-color: rgba(62, 79, 128, 0.08);
+  padding-left: 24px;
+}
+
+.itemIcon {
+  display: block;
+}
+
+.subListContainer {
+  margin-top: 8px;
+  margin-left: 16px;
+  padding-left: 12px;
+  border-left: 2px solid rgba(16, 54, 129, 0.2);
+}
+
+/* 既存のサブメニュー (SubMenuContent用) のレイアウトを調整する用 */
+:global(.submenu) {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+:global(.submenuButton) {
+  background: none;
+  border: none;
+  color: #103681;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  text-decoration: none;
+  font-family: Arial, sans-serif; /* フォント統一 */
+  transition: opacity 0.2s;
+}
+
+:global(.submenuButton):hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .menuWrapper {
+    top: 16px;
+    right: 20px;
+  }
 }

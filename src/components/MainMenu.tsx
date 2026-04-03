@@ -1,151 +1,82 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import Image from 'next/image';
 import styles from './MainMenu.module.css';
 
-const MainMenu: React.FC<{ onProfileSelect: (path: string | null) => void }> = ({ onProfileSelect }) => {
-    // Independent toggle states for expandable menus
-    const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const [isCatsOpen, setIsCatsOpen] = useState(false);
-    const [isSnsOpen, setIsSnsOpen] = useState(false);
+interface MainMenuProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (open: boolean) => void;
+  onItemSelect: (action?: () => void) => void;
+}
 
-    const handleProfileClick = () => {
-        setIsProfileOpen(!isProfileOpen);
-    };
+const MainMenu: React.FC<MainMenuProps> = ({
+  isMenuOpen,
+  setIsMenuOpen,
+  onItemSelect
+}) => {
+  const handleToggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-    const handleCatsClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        setIsCatsOpen(!isCatsOpen);
-    };
+  const handleScrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    onItemSelect(); // メニューを閉じるなどの処理
+  };
 
-    const handleSnsClick = () => {
-        setIsSnsOpen(!isSnsOpen);
-    };
+  return (
+    <>
+      {/* 背景オーバーレイ */}
+      <div 
+        className={`${styles.menuOverlay} ${isMenuOpen ? styles.overlayVisible : ''}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+      
+      <div className={styles.menuWrapper}>
+        {/* 右上のカプセル型ボタン */}
+        <button className={styles.toggleButton} onClick={handleToggleMenu}>
+          <Image src="/cat2.png" alt="cat" width={24} height={24} className={styles.toggleIcon} />
+          <span className={styles.toggleText}>{isMenuOpen ? 'CLOSE' : 'MENU'}</span>
+        </button>
 
-    return (
-        <nav className={styles.menuContainer}>
-            <ul className={styles.menuList}>
-                {/* Profile Section */}
-                <li className={styles.menuItem}>
-                    <button
-                        className={styles.menuButton}
-                        onClick={handleProfileClick}
-                    >
-                        <Image src="/cat.png" alt="icon" width={30} height={30} className={styles.icon} />
-                        Profile
-                    </button>
+        {/* ドロップダウンメニューパネル */}
+        <div className={`${styles.dropdownPanel} ${isMenuOpen ? styles.open : ''}`}>
+          <div className={styles.logoTitle}>
+            <span className={styles.logoText}>MENU</span>
+          </div>
 
-                    {isProfileOpen && (
-                        <ul className={styles.submenu}>
-                            <li>
-                                <button
-                                    className={styles.submenuButton}
-                                    onClick={() => onProfileSelect('/owner.png')}
-                                >
-                                    Owner
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    className={styles.submenuButton}
-                                    onClick={handleCatsClick}
-                                >
-                                    Cats
-                                </button>
-                                {isCatsOpen && (
-                                    <ul className={styles.submenu}>
-                                        <li>
-                                            <button
-                                                className={styles.submenuButton}
-                                                onClick={() => onProfileSelect('/kyotaro.png')}
-                                            >
-                                                Kyotaro
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button
-                                                className={styles.submenuButton}
-                                                onClick={() => onProfileSelect('/mei.png')}
-                                            >
-                                                Mei
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button
-                                                className={styles.submenuButton}
-                                                onClick={() => onProfileSelect('/yukinosuke.png')}
-                                            >
-                                                Yukinosuke
-                                            </button>
-                                        </li>
-                                    </ul>
-                                )}
-                            </li>
-                        </ul>
-                    )}
-                </li>
+          <ul className={styles.mainList}>
+            {/* Profile Section */}
+            <li className={styles.listItem}>
+              <button className={styles.itemButton} onClick={() => handleScrollTo('profile')}>
+                <Image src="/cat2.png" alt="cat" width={20} height={20} className={styles.itemIcon} />
+                PROFILE
+              </button>
+            </li>
 
-                {/* Game Log Section */}
-                <li className={styles.menuItem}>
-                    <a href="https://sizu.me/izumiharu" target="_blank" rel="noopener noreferrer" className={styles.menuButton}>
-                        <Image src="/cat.png" alt="icon" width={30} height={30} className={styles.icon} />
-                        Game Log
-                    </a>
-                </li>
+            {/* Game Log Section */}
+            <li className={styles.listItem}>
+              <button className={styles.itemButton} onClick={() => handleScrollTo('game-log')}>
+                <Image src="/cat2.png" alt="cat" width={20} height={20} className={styles.itemIcon} />
+                GAME LOG
+              </button>
+            </li>
 
-                {/* SNS Section */}
-                <li className={styles.menuItem}>
-                    <button
-                        className={styles.menuButton}
-                        onClick={handleSnsClick}
-                    >
-                        <Image src="/cat.png" alt="icon" width={30} height={30} className={styles.icon} />
-                        SNS
-                    </button>
-
-                    {isSnsOpen && (
-                        <ul className={styles.submenu}>
-                            <li>
-                                <a
-                                    href="https://bsky.app/profile/haruizumi.bsky.social"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.submenuButton}
-                                >
-                                    <Image src="/bluesky.png" alt="Bluesky" width={24} height={24} />
-                                    Bluesky
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://medium.com/@urahimuzi"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.submenuButton}
-                                >
-                                    <Image src="/medium.png" alt="Medium" width={24} height={24} />
-                                    Medium
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.tumblr.com/izumiharu-x-meow"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.submenuButton}
-                                >
-                                    <Image src="/tumblr.png" alt="Tumblr" width={24} height={24} />
-                                    Tumblr
-                                </a>
-                            </li>
-                        </ul>
-                    )}
-                </li>
-            </ul>
-        </nav>
-    );
+            {/* SNS Section */}
+            <li className={styles.listItem}>
+              <button className={styles.itemButton} onClick={() => handleScrollTo('sns')}>
+                <Image src="/cat2.png" alt="cat" width={20} height={20} className={styles.itemIcon} />
+                SNS
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default MainMenu;
