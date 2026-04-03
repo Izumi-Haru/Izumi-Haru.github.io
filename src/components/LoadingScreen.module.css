@@ -40,13 +40,13 @@
 /* メインの波 */
 .liquidWave {
   position: absolute;
-  top: 60%; /* 初期位置（水面の高さ調整） */
+  top: 50%; /* 初期位置（水面の高さ調整） */
   left: -25%;
   width: 150%;
   height: 150%;
   background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
   border-radius: 45% 48% 47% 46%;
-  animation: wave-fill 3s ease-in-out infinite, wave-move 4s linear infinite;
+  animation: wave-fill 2.5s ease-in-out infinite, wave-move 3s linear infinite;
 }
 
 /* 中層の波 */
@@ -59,7 +59,7 @@
   height: 100%;
   background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
   border-radius: 48% 45% 46% 47%;
-  animation: wave-fill 8s ease-in-out infinite reverse, wave-move 12s linear infinite;
+  animation: wave-fill 3.5s ease-in-out infinite reverse, wave-move 4s linear infinite;
 }
 
 /* 奥層の波 */
@@ -72,16 +72,26 @@
   height: 100%;
   background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
   border-radius: 46% 47% 45% 48%;
-  animation: wave-fill 15s ease-in-out infinite, wave-move 16s linear infinite;
+  animation: wave-fill 4.5s ease-in-out infinite, wave-move 5s linear infinite;
 }
 
-/* アニメーション：上下・拡大縮小 */
+/* アニメーション：上下・拡大縮小・形変化 */
 @keyframes wave-fill {
   0%, 100% {
     transform: translateY(0) scale(1);
+    border-radius: 45% 48% 47% 46%;
+  }
+  25% {
+    transform: translateY(-15px) scale(1.08);
+    border-radius: 35% 55% 52% 45%;
   }
   50% {
-    transform: translateY(-20px) scale(1.05);
+    transform: translateY(-30px) scale(1.15);
+    border-radius: 48% 42% 45% 48%;
+  }
+  75% {
+    transform: translateY(-15px) scale(1.08);
+    border-radius: 50% 40% 48% 50%;
   }
 }
 
