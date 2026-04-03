@@ -203,15 +203,43 @@ export default function Home() {
               <div className={styles.snsText}>
                 <span className={styles.snsLabel}>sizu.me</span>
               </div>
-              <span className={styles.snsArrow}>↗</span>
+              <svg
+                className={styles.snsArrow}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+               <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                />
+              </svg>
             </a>
             
             <a href="https://infinitebacklog.net/users/izumiharu" target="_blank" rel="noopener noreferrer" className={styles.snsButton}>
-              <Image src="/infinity.png" alt="INFINITEBACKLOG" width={32} height={32} />
+              <Image src="/infinity.png" alt="INFINITE BACKLOG" width={32} height={32} />
               <div className={styles.snsText}>
                 <span className={styles.snsLabel}>INFINITEBACKLOG</span>
               </div>
-              <span className={styles.snsArrow}>↗</span>
+              <svg
+                className={styles.snsArrow}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+               <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                />
+              </svg>
             </a>
           </div>
         </div>
@@ -231,7 +259,21 @@ export default function Home() {
               <div className={styles.snsText}>
                 <span className={styles.snsLabel}>Youtube (Game)</span>
               </div>
-              <span className={styles.snsArrow}>↗</span>
+              <svg
+                className={styles.snsArrow}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+               <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                />
+              </svg>
             </a>
             
             <a href="https://www.youtube.com/@%E3%81%84%E3%81%9A%E3%81%BC%E5%AE%B6%E3%81%AE%E3%81%AB%E3%82%83%E3%82%93%E3%81%93" target="_blank" rel="noopener noreferrer" className={styles.snsButton}>
@@ -239,7 +281,21 @@ export default function Home() {
               <div className={styles.snsText}>
                 <span className={styles.snsLabel}>Youtube (Cats)</span>
               </div>
-              <span className={styles.snsArrow}>↗</span>
+              <svg
+                className={styles.snsArrow}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+               <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                />
+              </svg>
             </a>
 
             <a href="https://bsky.app/profile/haruizumi.bsky.social" target="_blank" rel="noopener noreferrer" className={styles.snsButton}>
@@ -247,7 +303,21 @@ export default function Home() {
               <div className={styles.snsText}>
                 <span className={styles.snsLabel}>Bluesky</span>
               </div>
-              <span className={styles.snsArrow}>↗</span>
+              <svg
+                className={styles.snsArrow}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+               <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                />
+              </svg>
             </a>
 
             <a href="https://medium.com/@urahimuzi" target="_blank" rel="noopener noreferrer" className={styles.snsButton}>
@@ -255,7 +325,21 @@ export default function Home() {
               <div className={styles.snsText}>
                 <span className={styles.snsLabel}>Medium</span>
               </div>
-              <span className={styles.snsArrow}>↗</span>
+              <svg
+                className={styles.snsArrow}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+               <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                />
+              </svg>
             </a>
 
             <a href="https://www.tumblr.com/izumiharu-x-meow" target="_blank" rel="noopener noreferrer" className={styles.snsButton}>
@@ -263,7 +347,21 @@ export default function Home() {
               <div className={styles.snsText}>
                 <span className={styles.snsLabel}>Tumblr</span>
               </div>
-              <span className={styles.snsArrow}>↗</span>
+              <svg
+                className={styles.snsArrow}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+               <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                />
+              </svg>
             </a>
           </div>
         </div>
